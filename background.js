@@ -1009,11 +1009,11 @@ var _init_timer = setInterval(function() {
 	}
 }, 10);
 
-chrome.webRequest.onBeforeRequest.addListener(
+chrome.webRequest.onHeadersReceived.addListener(
 	function (info) {
 		var status = { cancel: false };
 		if ((info.statusLine.indexOf('200 OK') != -1) && (info.url.indexOf(".") != -1)) {
-			console.log("onBeforeRequest", info);
+			console.log("onHeadersReceived", info);
 			var ext = info.url.substring(info.url.lastIndexOf(".")+1);
 			for (var i = 0; i < download_extentions.length; i++) {
 				if (ext === download_extentions[i]) {
