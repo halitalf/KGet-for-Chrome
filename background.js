@@ -973,6 +973,17 @@ var download_mimetypes = [
 
 var download_extentions = [];
 
+var user = "admin";
+var pass = "";
+var userStr = "";
+chrome.storage.sync.get({username: "admin",password: ""}, function(items){user = items.username;pass = items.password;});
+if (user != "")
+{
+	userStr += user
+	userStr += (pass != "") ? ":"+pass : ""
+	userStr += "@"
+}
+
 var _init_timer = setInterval(function() {
 	if (/loaded|complete/.test(document.readyState)) {
 		clearInterval(_init_timer);
@@ -1001,7 +1012,7 @@ chrome.webRequest.onHeadersReceived.addListener(
 					var xhr = new XMLHttpRequest();
 					xhr.open(
 						"GET",
-						"http://solenskiner:0dayz@localhost:8080/do?action=add&data="+info.url+"&group=My%20Downloads",
+						"http://"+userStr+"localhost:8080/do?action=add&data="+info.url+"&group=My%20Downloads",
 						true
 					);
 					xhr.send(null);
