@@ -988,9 +988,9 @@ var userStr = "";
 chrome.storage.sync.get({username: "admin",password: ""}, function(items){user = items.username;pass = items.password;});
 if (user != "")
 {
-	userStr += user
-	userStr += (pass != "") ? ":"+pass : ""
-	userStr += "@"
+	userStr += user;
+	userStr += (pass != "") ? ":"+pass : "";
+	userStr += "@";
 }
 
 var _init_timer = setInterval(function() {
